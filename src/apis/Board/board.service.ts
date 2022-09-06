@@ -35,14 +35,14 @@ export class BoardService {
     if (title.length > 20) {
       throw new HttpException(
         '제목은 최대 20자 까지만 작성할 수 있습니다.',
-        412,
+        400,
       );
     }
     // 본문 길이 검증
     if (content.length > 200) {
       throw new HttpException(
         '본문은 최대 200자 까지만 작성할 수 있습니다.',
-        412,
+        400,
       );
     }
     // 비밀번호 검증
@@ -50,7 +50,7 @@ export class BoardService {
     if (!reg.test(password)) {
       throw new HttpException(
         '비밀번호 형식은 최소 6자, 숫자 포함 입니다.',
-        412,
+        400,
       );
     }
     const hashed = await bcrypt.hash(password, 3);
