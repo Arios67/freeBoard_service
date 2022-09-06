@@ -20,6 +20,10 @@ export class BoardEntity {
   @ApiProperty({ type: 'text', maxLength: 200, description: '본문' })
   content: string;
 
+  @Column()
+  @ApiProperty({ type: 'text', description: '게시글 비밀번호 (수정 불가)' })
+  password: string;
+
   @CreateDateColumn()
   createAt: Date;
 }
