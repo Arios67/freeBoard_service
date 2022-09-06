@@ -2,8 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BoardModule } from './apis/Board/board.module';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -26,7 +24,5 @@ import { AppService } from './app.service';
       timezone: 'Asia/Seoul',
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

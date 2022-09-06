@@ -85,11 +85,6 @@ export class BoardService {
       .orderBy('board.createAt', 'DESC')
       .take(20)
       .getMany();
-    // const result = await this.boardRepository.find({
-    //   where: {
-    //     createAt: LessThan(last),
-    //   },
-    // });
 
     return result.map((e) => new BoardDto(e));
   }

@@ -9,8 +9,19 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import {
+  ApiAcceptedResponse,
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
 import { BoardService } from './board.service';
+import { BoardAPIDocs } from './docs/board.docs';
+import { BoardDto } from './dto/board.dto';
 import { CreateBoardInput } from './dto/createBoard.input';
 import { UpdateBoardInput } from './dto/updateBoard.input';
 
@@ -27,6 +38,9 @@ export class BoardController {
    * @returns JSON
    */
   @Post()
+  @ApiOperation(BoardAPIDocs.CreateOperation())
+  @ApiBadRequestResponse({ description: 'error message' })
+  @ApiCreatedResponse({ type: BoardDto, description: 'created' })
   async create(@Body() input: CreateBoardInput) {
     return await this.boardService.create(input);
   }
@@ -44,6 +58,8 @@ export class BoardController {
     type: Date,
     required: false,
   })
+  @ApiOperation(BoardAPIDocs.GetListOperation())
+  @ApiOkResponse({ type: [BoardDto] })
   @Get()
   async find(@Query('lastOne-createAt') last: Date) {
     return await this.boardService.find(last);
@@ -57,6 +73,9 @@ export class BoardController {
    * @returns JSON
    */
   @Put(':id')
+  @ApiOperation(BoardAPIDocs.UpdateOpteration())
+  @ApiCreatedResponse({ type: BoardDto, description: 'updated' })
+  @ApiNoContentResponse({ description: 'No Content' })
   async update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() input: UpdateBoardInput,
@@ -72,6 +91,9 @@ export class BoardController {
    * @returns String
    */
   @Delete(':id')
+  @ApiOperation(BoardAPIDocs.DeleteOperation())
+  @ApiOkResponse({ type: String, description: 'deleted' })
+  @ApiNoContentResponse({ description: 'No Content' })
   async delete(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() password: string,
