@@ -2,7 +2,8 @@
 * 프레임워크 : NestJS
 * DBMS : MySQL
 * ORM : typeORM <br><br>
-api-docs :  
+* api-docs : localhost:3000/api-docs <br>
+https://drive.google.com/file/d/1o23Bcb6tk6FrDSR0lVbsbWI_mLDNI58m/view?usp=sharing
 ## 요구 사항 <br>
 <B>1. 제목과 본문으로 구성된 게시글 생성</B>
 * 제목과 본문은 각각 20, 200자이며 이모지 포함 가능 <br>
