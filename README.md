@@ -33,6 +33,7 @@ Request body example : <br>
 * 제목과 본문의 길이, 비밀번호 형식(6자 이상, 숫자 포함)을 검증 한 뒤 문제가 없다면 생성된 Board 객체를 password만 제외하고 반환합니다. 
 * 입력이 제목, 본문, 비밀번호 형식과 다르다면 형식을 안내하는 에러메세지와 함께 400 상태코드를 반환합니다.
 * 비밀번호는 해싱을 거쳐 DB에 저장됩니다. <br><br>
+* 
 ### 2. 게시글 목록 조회<br>
 200 Response example :
 ```
@@ -58,6 +59,7 @@ Request body example : <br>
 * Query string을 통해 client가 전달받은 Board 배열 마지막 element의 'createAt'값을 입력 받습니다. 요청 받은 게시글 다음 순서의 글부터 20개의 게시글을 반환합니다.
 * 입력 값이 없다면 가장 최신 게시글 20개를 반환합니다.
 <br><br>
+
 ### 3. 게시글 수정<br>
 Request body example :
 ```
@@ -67,7 +69,7 @@ Request body example :
   "password": "abcdef1"
 }
 ```
-201 Response example :
+200 Response example :
 ```
 {
   "id": "uuid",
@@ -82,7 +84,17 @@ Request body example :
 * 존재하지 않는 게시글 id에 대한 요청에는 204 코드가 반환됩니다. <br><br>
 
 ### 4. 게시글 삭제<br>
+Request body example :
+```
+{
+  "password": "abcdef1"
+}
+```
+200 Response example :
+```
+게시글 삭제
+```
 * Path parameter를 통해 삭제할 게시글의 id를 전달 받은 뒤 올바른 비밀번호가 맞는지 검증합니다.
-* 비밀번호가 맞다면 해당 게시글을 물리적으로 삭제 시킨 후 '게시글 삭제' 문자열을 반환합니다.
+* 비밀번호가 맞다면 해당 게시글을 물리적으로 삭제 시킵니다.
 * 비밀번호가 틀렸다면 401 코드를 반환합니다.
 * 존재하지 않는 게시글 id에 대한 요청에는 204 코드가 반환됩니다. 
