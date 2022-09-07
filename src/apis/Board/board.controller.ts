@@ -74,8 +74,8 @@ export class BoardController {
    */
   @Put(':id')
   @ApiOperation(BoardAPIDocs.UpdateOpteration())
-  @ApiCreatedResponse({ type: BoardDto, description: 'updated' })
-  @ApiNoContentResponse({ description: 'No Content' })
+  @ApiOkResponse({ type: BoardDto, description: 'updated' })
+  @ApiNoContentResponse(BoardAPIDocs.NoContentResponse())
   async update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() input: UpdateBoardInput,
@@ -93,11 +93,11 @@ export class BoardController {
   @Delete(':id')
   @ApiOperation(BoardAPIDocs.DeleteOperation())
   @ApiOkResponse({ type: String, description: 'deleted' })
-  @ApiNoContentResponse({ description: 'No Content' })
+  @ApiNoContentResponse(BoardAPIDocs.NoContentResponse())
   async delete(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() password: string,
   ) {
-    return await this.boardService.delete(id, password);
+    return await this.boardService.delete(id, Object.values(password)[0]);
   }
 }

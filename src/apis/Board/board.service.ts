@@ -111,7 +111,6 @@ export class BoardService {
 
   async delete(id: string, password: string) {
     const prev = await this.boardRepository.findOneBy({ id });
-
     if (prev) {
       const isCorrect = await bcrypt.compare(password, prev.password);
       if (!isCorrect) {

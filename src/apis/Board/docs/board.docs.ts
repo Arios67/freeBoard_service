@@ -26,4 +26,10 @@ export class BoardAPIDocs {
       description: '게시글을 삭제합니다.',
     };
   }
+
+  static NoContentResponse() {
+    return {
+      description: 'No Content',
+    };
+  }
 }
