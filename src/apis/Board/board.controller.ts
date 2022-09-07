@@ -23,6 +23,7 @@ import { BoardService } from './board.service';
 import { BoardAPIDocs } from './docs/board.docs';
 import { BoardDto } from './dto/board.dto';
 import { CreateBoardInput } from './dto/createBoard.input';
+import { password } from './dto/password.dto';
 import { UpdateBoardInput } from './dto/updateBoard.input';
 
 @ApiTags('게시판 API')
@@ -96,8 +97,8 @@ export class BoardController {
   @ApiNoContentResponse(BoardAPIDocs.NoContentResponse())
   async delete(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() password: string,
+    @Body() password: password,
   ) {
-    return await this.boardService.delete(id, Object.values(password)[0]);
+    return await this.boardService.delete(id, password.password);
   }
 }
