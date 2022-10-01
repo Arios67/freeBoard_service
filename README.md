@@ -1,4 +1,4 @@
-# 게시판 과제 <br>
+# 자유 게시판 <br>
 * 프레임워크 : NestJS
 * DBMS : MySQL
 * ORM : typeORM <br><br>
